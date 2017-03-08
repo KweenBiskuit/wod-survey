@@ -31,10 +31,10 @@ router.get('/', function (req, res, next) {
   res.sendStatus(200);
 });
 
-// router.post('/form', function (req, res, next) {
-//   console.log('body=>', req)
-//   res.sendStatus(200);
-// });
+router.post('/form', function (req, res, next) {
+  console.log('body=>', req)
+  res.sendStatus(200);
+});
 
 router.post('/ingest', upload.single('file'), function (req, res) {
   var filePath = req.file.path;
