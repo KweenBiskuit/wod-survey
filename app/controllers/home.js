@@ -45,7 +45,8 @@ router.post('/form', function(req, res, next) {
             item.value = answer.choice.label;
             item.type = 'number';
             item.FK_question = index;
-            item.FK_idSurvey = req.body.form_response.hidden.id;
+            //item.FK_idSurvey = req.body.form_response.hidden.id;
+            item.FK_idSurvey = req.body.form_response.token;
              answersInserted[answersInserted.length] = item;
         });     
     }catch(err){
