@@ -53,7 +53,12 @@ router.post('/form', function(req, res, next) {
         console.log("error =>", err)
     }
 
+    try{
     models.Answer.bulkCreate(answersInserted);
+        
+    }catch(err){
+        console.log("error 2 =>", err)
+    }
 
     res.status(200).json(req.body);
 });
