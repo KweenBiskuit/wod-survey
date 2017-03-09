@@ -12,6 +12,10 @@ module.exports = function(sequelize, DataTypes) {
         },
         token: DataTypes.STRING,
         mail: DataTypes.STRING,
+        idSurvey: DataTypes.STRING,
+        scoreA: DataTypes.BIGINT,
+        scoreB: DataTypes.BIGINT,
+        company: DataTypes.BIGINT,
         startDate: {
             type: DataTypes.DATE,
             field: 'start_date'
