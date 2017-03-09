@@ -13,6 +13,8 @@ var path = require('path'),
 var fileParser = require('../lib/fileParser');
 var parser = new fileParser();
 
+var models = db.sequelize.models;
+
 var storage = multer.diskStorage({
     destination: function(req, file, cb) {
         cb(null, uploadPath)
