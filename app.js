@@ -4,7 +4,7 @@ var express = require('express'),
 
 var app = express();
 var bodyParser = require('body-parser');
-// app.use(bodyParser.json());
+app.use(bodyParser.json());
 
 module.exports = require('./config/express')(app, config);
 

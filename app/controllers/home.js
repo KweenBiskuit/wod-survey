@@ -7,6 +7,9 @@ var express = require('express'),
   db = require('../models'),
   multer = require('multer');
 
+var bodyParser = require('body-parser');
+app.use(bodyParser.json());
+
 var path = require('path'),
   uploadPath = path.join(__dirname + '/../../uploads');
 
