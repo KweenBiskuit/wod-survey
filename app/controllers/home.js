@@ -38,15 +38,19 @@ router.post('/form', function(req, res, next) {
     var answersInserted = [];
     var answers = req.body.form_response.answers;
     // console.log('body=>', req.body);
-    answers.forEach(function(answer , index){
-        console.log("answer", answer.choice.label);
-        let item = {};
-        item.value = answer.choice.label;
-        item.type = 'number';
-        item.FK_question = index;
-        item.FK_idSurvey = req.body.form_response.hidden.id;
-         answersInserted[answersInserted.length] = item;
-    });
+    try{
+        answers.forEach(function(answer , index){
+            console.log("answer", answer.choice.label);
+            let item = {};
+            item.value = answer.choice.label;
+            item.type = 'number';
+            item.FK_question = index;
+            item.FK_idSurvey = req.body.form_response.hidden.id;
+             answersInserted[answersInserted.length] = item;
+        });     
+    }catch(err){
+        console.log("error =>", err)
+    }
 
     models.Answer.bulkCreate(answersInserted);
 
