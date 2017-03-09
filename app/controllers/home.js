@@ -33,7 +33,7 @@ router.get('/', function (req, res, next) {
 
 router.post('/form', function (req, res, next) {
   console.log('body=>', req)
-  res.sendStatus(200);
+  res.status(200).json(req.body);
 });
 
 router.post('/ingest', upload.single('file'), function (req, res) {
