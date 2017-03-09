@@ -7,8 +7,7 @@ var express = require('express'),
   db = require('../models'),
   multer = require('multer');
 
-var bodyParser = require('body-parser');
-app.use(bodyParser.json());
+
 
 var path = require('path'),
   uploadPath = path.join(__dirname + '/../../uploads');
@@ -38,7 +37,7 @@ router.get('/', function (req, res, next) {
 });
 
 router.post('/form', function (req, res, next) {
-  console.log('body=>', req)
+  console.log('body=>', req.body)
   res.status(200).json(req.body);
 });
 
