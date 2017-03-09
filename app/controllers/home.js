@@ -35,13 +35,20 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/form', function(req, res, next) {
+    var answersInserted = [];
     var answers = req.body.form_response.answers;
     // console.log('body=>', req.body);
-    answers.forEach(function(answer){
-        console.log("answer", answer);
-    })
-   
+    answers.forEach(function(answer , index){
+        console.log("answer", answer.choice.label);
+        let item = {};
+        item.value = answer.choice.label;
+        item.type = 'number';
+        item.FK_question = index;
+        item.FK_idSurvey = req.body.form_response.hidden.id;
+         answersInserted[answersInserted.length] = item;
+    });
 
+    models.Answer.bulkCreate(answersInserted);
 
     res.status(200).json(req.body);
 });
