@@ -1,11 +1,10 @@
-var bodyParser = require('body-parser');
 var express = require('express'),
   config = require('./config/config'),
   db = require('./app/models');
 
 var app = express();
-
-app.use(bodyParser.json());
+var bodyParser = require('body-parser');
+// app.use(bodyParser.json());
 
 module.exports = require('./config/express')(app, config);
 
