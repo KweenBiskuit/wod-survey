@@ -39,7 +39,7 @@ router.post('/form', function(req, res, next) {
     console.log('body=>', req.body);
     for (var key in answer) {
         if (answer.hasOwnProperty(key)) {
-            console.log(key + " -> " + p[key]);
+            console.log(key + " -> " + answer[key]);
         }
     }
   
