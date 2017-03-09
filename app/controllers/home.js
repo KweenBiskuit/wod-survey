@@ -35,14 +35,12 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/form', function(req, res, next) {
-    var answer = req.body;
-    console.log('body=>', req.body);
-    for (var key in answer) {
-        if (answer.hasOwnProperty(key)) {
-            console.log(key + " -> " + answer[key]);
-        }
-    }
-  
+    var answers = req.body.form_response.answers;
+    // console.log('body=>', req.body);
+    answers.forEach(function(answer){
+        console.log("answer", answer);
+    })
+   
 
 
     res.status(200).json(req.body);
