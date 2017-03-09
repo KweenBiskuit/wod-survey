@@ -2,47 +2,54 @@
 
 
 var express = require('express'),
-  app = express(),
-  router = express.Router(),
-  db = require('../models'),
-  multer = require('multer');
-
-
+    app = express(),
+    router = express.Router(),
+    db = require('../models'),
+    multer = require('multer');
 
 var path = require('path'),
-  uploadPath = path.join(__dirname + '/../../uploads');
+    uploadPath = path.join(__dirname + '/../../uploads');
 
 var fileParser = require('../lib/fileParser');
 var parser = new fileParser();
 
 var storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, uploadPath)
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.originalname.replace(path.extname(file.originalname), "") + '-' + Date.now() + path.extname(file.originalname))
-  }
+    destination: function(req, file, cb) {
+        cb(null, uploadPath)
+    },
+    filename: function(req, file, cb) {
+        cb(null, file.originalname.replace(path.extname(file.originalname), "") + '-' + Date.now() + path.extname(file.originalname))
+    }
 });
 
 var upload = multer({
-  storage: storage
+    storage: storage
 });
 
-module.exports = function (app) {
-  app.use('/', router);
+module.exports = function(app) {
+    app.use('/', router);
 };
 
-router.get('/', function (req, res, next) {
-  res.sendStatus(200);
+router.get('/', function(req, res, next) {
+    res.sendStatus(200);
 });
 
-router.post('/form', function (req, res, next) {
-  console.log('body=>', req.body)
-  res.status(200).json(req.body);
+router.post('/form', function(req, res, next) {
+    var answer = req.body;
+    console.log('body=>', req.body);
+    for (var key in answer) {
+        if (answer.hasOwnProperty(key)) {
+            console.log(key + " -> " + p[key]);
+        }
+    }
+  
+
+
+    res.status(200).json(req.body);
 });
 
-router.get('/test', function (req, res, next) {
-  res.sendStatus(200);
+router.get('/test', function(req, res, next) {
+    res.sendStatus(200);
 });
 
 
@@ -64,8 +71,8 @@ var scores = {};
 var tabAlphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"];
 //for (var i = 0; i < tabAlphabet.length; i++) {
 
- router.get('/getScore/:idSurvey/:indStart/:indEnd', function(req, res, next) {
-//router.get('/getScore/:indStart/:indEnd', function(req, res, next) {
+router.get('/getScore/:idSurvey/:indStart/:indEnd', function(req, res, next) {
+    //router.get('/getScore/:indStart/:indEnd', function(req, res, next) {
     let indStart = parseInt(req.params.indStart);
     let indEnd = parseInt(req.params.indEnd);
 
@@ -90,7 +97,7 @@ var tabAlphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"];
         where: {
             'FK_question': { $gt: indStart - 1, $lt: indEnd + 1 },
             'idSurvey': idSurvey
-            //25
+                //25
 
         }
     }).then(function(answers) {
