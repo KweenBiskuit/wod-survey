@@ -5,8 +5,13 @@ var express = require('express'),
 var app = express();
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
+var corsExpress = require('express-cors');
 
 module.exports = require('./config/express')(app, config);
+
+app.use(corsExpress(){
+  allowedOrigins: ['wodsurveyapp.herokuapp.com']
+})
 
 db.sequelize
   .sync()

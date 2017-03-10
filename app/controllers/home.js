@@ -40,6 +40,8 @@ router.post('/form', function(req, res, next) {
     var answersInserted = [];
     var answers = req.body.form_response.answers;
     // console.log('body=>', req.body);
+
+
     try{
         answers.forEach(function(answer , index){
             console.log("answer YOYO", answer.choice.label);
